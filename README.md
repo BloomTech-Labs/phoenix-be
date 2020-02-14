@@ -1,7 +1,7 @@
   
 # Code Climate: Grade Badge
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/80c861598aa63d5842ee/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6107c810fc83d93a2733/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6107c810fc83d93a2733/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/test_coverage)
 
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
