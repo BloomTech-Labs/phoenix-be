@@ -1,12 +1,14 @@
 module.exports = {
     development: {
-      client: "sqlite3",
+      client: "pg",
       useNullAsDefault: true,
-      connection: {
-        filename: "./database/phoenix.db3"
-      },
+      connection: process.env.DATABASE_URL,
       migrations: {
         directory: "./database/migrations"
+      },
+      seeds: {
+        directory: "./database/seeds"
+    
       },
       seeds: {
         directory: "./database/seeds"
@@ -20,7 +22,7 @@ module.exports = {
     testing: {
       client: 'cypress',
       connection: {
-        filename: './database/test.db3',
+        filename: './cypress/server_test.spec.js',
       },
       useNullAsDefault: true,
       migrations: {
