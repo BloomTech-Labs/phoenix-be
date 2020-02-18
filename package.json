@@ -16,7 +16,10 @@
     "url": "https://github.com/Lambda-School-Labs/phoenix-be/issues"
   },
   "homepage": "https://github.com/Lambda-School-Labs/phoenix-be#readme",
-  "dependencies": {},
+  "dependencies": {
+    "pg": "^7.18.1",
+    "sqlite3": "^4.1.1"
+  },
   "devDependencies": {
     "cypress": "^4.0.2"
   }
