@@ -5,33 +5,38 @@
 
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be completed by.  Make sure to delete the numbers by the end of Labs.
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at Heroku Git at https://phoenix-be-production.herokuapp.com/
+**Backend delpoyed at** [Heroku Git](https://phoenix-be-production.herokuapp.com/)
 
-## 1️⃣ Getting started
+## Getting started
 
 To get the server running locally:
 
 🚫 adjust these scripts to match your project
 
-- Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+1. Clone this repo
+2. **Yarn Install** to install all required dependencies
+3. **Yarn Server** to start the local server
+4. **Yarn Test** to start server using testing environment
 
-### Backend framework goes here
+## Backend framework 
 
-🚫 Why did you choose this framework?
+- Node.js
+- Postgres
+- Socket.IO
+- Google Calendar
 
--    Point One
--    Point Two
--    Point Three
--    Point Four
+# Framework Advantages
+
+- An open-source, cross-platform
+- Easy to integrate SQL database
+- Chat functionality with simple setup
+- Meetup functionality
 
 ## 2️⃣ Endpoints
 
