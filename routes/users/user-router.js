@@ -18,6 +18,22 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/key', (req, res) => {
+    const key = req.body;
+    console.log('key',key)
+    User.getUserBy({key})
+        .then(users => {
+            res.status(200).json(
+                users.map(cv => {
+                    return cv
+                })
+            )
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'Error retrieving users', err})
+        })
+})
 router.get('/:id', (req, res) => {
     const id = req.params.id
     
