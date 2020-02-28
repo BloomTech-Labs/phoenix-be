@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Calendar = require("./calendar-model.js");
 
 //get preview event
-router.get("/", (req, res) => {
+router.get("/preview", (req, res) => {
   Calendar.preview()
     .then(events => {
       res.status(200).json(events);
@@ -42,7 +42,34 @@ router.get("/", (req, res) => {
 
 // add event - ADMIN/HOST
 
-router.post("/", (req, res) => {});
+router.post("/", (req, res, next) => {
+  const { summary, location, description } = req.body;
+  const newEvent = { summary, location, description };
+  const { start_dateTime, start_timeZone } = req.body;
+  const newStart = { start_dateTime, start_timeZone };
+  const { end_dateTime, end_timeZone } = req.body;
+  const newEnd = { end_dateTime, end_timeZone };
+
+  // if (!summary || !location || !description) {
+  //   res.status(400).json({ message: "add required fields" });
+  // } else {
+  Calendar.addEvent(newEvent).then(newEvent => {
+    res.status(200).json({ message: "Event created!", newEvent });
+    next();
+  });
+  Calendar.addStart(newStart).then(newStart => {
+    res.status(200).json({ message: "Start created!", newStart });
+    next();
+  });
+  Calendar.addEnd(newEnd)
+    .then(newEnd => {
+      res.status(200).json({ message: "End created!", newEnd });
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ message: "Could not create event", error });
+    });
+});
 
 // edit event - REGISTER
 router.put("/user/:id/event/:id", (req, res) => {
@@ -98,3 +125,12 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+
+// add start next
+// add end next
+// add event have gone through both while creating the event first
+
+// add event next
+// add start next
+// add end next
+// combine into one post
