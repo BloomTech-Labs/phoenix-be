@@ -1,6 +1,6 @@
 var pg = require('pg');
 
-var conString = "postgres://lxdukfwc:yNm0YAijP6at_fpojLuYE2cyuCs5_BZP@raja.db.elephantsql.com:5432/lxdukfwc"
+var conString = process.env.DB_URL
 var client = new pg.Client(conString);
 client.connect(function(err) {
     if (err) {
