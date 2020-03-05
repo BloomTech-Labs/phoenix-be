@@ -16,7 +16,7 @@ function getUserById(id) {
 }
 
 function addUser(user) {
-    console.log(user, "random")
+    
     return db
         .insert(user)
         .into('users')
