@@ -12,7 +12,7 @@ function generateToken(user) {
     const options = {
         expiresIn: '1d',
     };
-    return jwt.sign(payload, process.env.JWT_SECRET || 'asdflasdfl', options);
+    return jwt.sign(payload, process.env.JWT_SECRET, options);
 }
 router.post('/register', (req, res) => {
     const { username, password, name, email, age } = req.body;
