@@ -16,6 +16,7 @@ function getUserById(id) {
 }
 
 function addUser(user) {
+    
     return db
         .insert(user)
         .into('users')

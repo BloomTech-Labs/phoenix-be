@@ -3,6 +3,7 @@ const User = require('../users/user-helpers.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 function generateToken(user) {
     const payload = {
         username: user.username,
@@ -14,8 +15,11 @@ function generateToken(user) {
     return jwt.sign(payload, process.env.JWT_SECRET, options);
 }
 router.post('/register', (req, res) => {
-    const { username, password, name, email, age } = req.body;
-    User.addUser({username, password: bcrypt.hashSync(password, 8), name, email, age })
+    let users = req.body;
+    const hash = bcrypt.hashSync(users.password, 8)
+     users.password = hash
+    
+    User.addUser(users)
         .then(id => {
             res.status(201).json({ Message: 'User Registeration Succesful', id });
         })
