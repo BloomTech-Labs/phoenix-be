@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
+
 
 
 module.exports = (req, res, next) => {
@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         next()
     } else if(token){
         console.log(token)
-        jwt.verify(token, 'asdflasdfl', (err, decodedJwt) => { //Fix this line so we can somehow use the process.env.JWT_SECRET 
+        jwt.verify(token, process.env.JWT_SECRET, (err, decodedJwt) => { //Fix this line so we can somehow use the process.env.JWT_SECRET 
             if(err){
                 res.status(401).json({ message: 'Failed to verify authorization one' })
             } else {
