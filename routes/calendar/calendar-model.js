@@ -31,15 +31,30 @@ function searchForEvent(filter) {
 //rewrite
 function register(event_id, user_id) {
   return db("attendees")
-    .select("*")
-    .from("attendees")
-    .join("phoenixEvent as e", "attendees.event_id", "e.event_id")
-    .join("users as u", "attendees.user_id", "u.id")
-    .where(event_id)
-    .in("phoenixEvent")
-    .where(user_id)
-    .in("users");
+    .insert({ event_id }, { user_id })
+    .into("attendees")
+    .select("phoenixEvent.event_id", "users.id")
+    .from(
+      db("phoenixEvent")
+        .select("phoenixEvent.event_id")
+        .from("phoenixEvent")
+        .where({ event_id }, "=", "attendees.event_id")
+    )
+    .as("e")
+    .fullOuterJoin(
+      db("users")
+        .select("users.id")
+        .from("users")
+        .where({ user_id }, "=", "attendees.user_id")
+    )
+    .as("u");
 }
+
+// insert into table 1
+// select data from table 2 union select data from table 3
+// select event and users from attendees(or event and users) where event_id=attendees.event_id
+
+// .join("phoenixEvent as e", "attendees.event_id", "e.event_id")
 
 //add event -ADMIN/HOST
 
