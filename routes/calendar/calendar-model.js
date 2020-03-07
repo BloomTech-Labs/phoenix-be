@@ -33,14 +33,7 @@ function register(event_id, user_id) {
     .then(() => db("phoenixEvent").where({ event_id: event_id }));
 }
 
-// insert into table 1
-// select data from table 2 union select data from table 3
-// select event and users from attendees(or event and users) where event_id=attendees.event_id
-
-// .join("phoenixEvent as e", "attendees.event_id", "e.event_id")
-
 //add event -ADMIN/HOST
-
 function addEvent(newEvent) {
   return db
     .insert(newEvent)
