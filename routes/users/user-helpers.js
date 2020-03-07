@@ -4,10 +4,10 @@ function getUsers() {
     return db('users')
 }
 
-function getUserBy(key) {
+function getUserBy({key}) {
+    console.log('inside helper',key)
     return db('users')
         .where(key)
-        .first()
 }
 
 function getUserById(id) {
@@ -16,6 +16,7 @@ function getUserById(id) {
 }
 
 function addUser(user) {
+    
     return db
         .insert(user)
         .into('users')
@@ -42,11 +43,16 @@ async function deleteUser(id) {
         return db('users')
 }
 
+function getByUsername(username) {
+    return db('users').where({ username }).first();
+}
+
 module.exports = {
     getUsers,
     getUserBy,
     getUserById,
     addUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getByUsername
 }
