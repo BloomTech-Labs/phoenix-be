@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 // search for event
-router.get("/", (req, res) => {
+router.get("/:filter", (req, res) => {
   const filter = req.params.filter;
 
   Calendar.searchForEvent(filter)
@@ -62,7 +62,7 @@ router.post("/", (req, res) => {
   }
 });
 
-// register for event / post to attendees table
+// register for event / post to attendees table - works
 router.post("/user/:user_id/event/:event_id", (req, res) => {
   const user_id = req.params.user_id;
   const event_id = req.params.event_id;

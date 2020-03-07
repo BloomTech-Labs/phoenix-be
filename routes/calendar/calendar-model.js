@@ -17,37 +17,20 @@ function event() {
 
 // search for friends on CR3 when that is implemented
 function searchForEvent(filter) {
-  return phoenixEvent()
-    .where("e.summary", "like", filter)
-    .where("e.description", "like", filter)
-    .where("e.location", "like", filter)
-    .where("s.start_dateTime", "like", filter)
-    .where("s.start_timeZone", "like", filter)
-    .where("n.end_dateTime", "like", filter)
-    .where("n.end_timeZone", "like", filter);
+  return db("phoenixEvent")
+    .select("*")
+    .from("phoenixEvent")
+    .where("phoenixEvent.summary", "like", "%", { filter }, "%")
+    .orWhere("phoenixEvent.description", "like", "%", { filter }, "%")
+    .orWhere("phoenixEvent.location", "like", "%", { filter }, "%");
 }
 
 //register for event
 //rewrite
 function register(event_id, user_id) {
   return db("attendees")
-    .insert({ event_id }, { user_id })
-    .into("attendees")
-    .select("phoenixEvent.event_id", "users.id")
-    .from(
-      db("phoenixEvent")
-        .select("phoenixEvent.event_id")
-        .from("phoenixEvent")
-        .where({ event_id }, "=", "attendees.event_id")
-    )
-    .as("e")
-    .fullOuterJoin(
-      db("users")
-        .select("users.id")
-        .from("users")
-        .where({ user_id }, "=", "attendees.user_id")
-    )
-    .as("u");
+    .insert({ event_id, user_id })
+    .then(() => db("phoenixEvent").where({ event_id: event_id }));
 }
 
 // insert into table 1
