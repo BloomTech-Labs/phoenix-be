@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../users/user-helpers.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config()
+
 
 function generateToken(user) {
     const payload = {
@@ -12,11 +12,14 @@ function generateToken(user) {
     const options = {
         expiresIn: '1d',
     };
-    return jwt.sign(payload, process.env.JWT_SECRET || 'asdflasdfl', options);
+    return jwt.sign(payload, process.env.JWT_SECRET, options);
 }
 router.post('/register', (req, res) => {
-    const { username, password, name, email, age } = req.body;
-    User.addUser({username, password: bcrypt.hashSync(password, 8), name, email, age })
+    let users = req.body;
+    const hash = bcrypt.hashSync(users.password, 8)
+     users.password = hash
+    
+    User.addUser(users)
         .then(id => {
             res.status(201).json({ Message: 'User Registeration Succesful', id });
         })
