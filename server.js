@@ -14,7 +14,7 @@ server.use('/auth', authRouter)
 
 
 server.get("/", (req, res) => {
-    res.send(`<h2>PhoeNicks</h2>`);
+    res.send(`<h2>PhoeNicks!</h2>`);
 })
 
 
