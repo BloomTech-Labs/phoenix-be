@@ -1,19 +1,7 @@
 const router = require("express").Router();
 const Calendar = require("./calendar-model.js");
 
-//get preview event
-router.get("/", (req, res) => {
-  Calendar.preview()
-    .then(events => {
-      res.status(200).json(events);
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({ message: "Unable to fetch preview", error });
-    });
-});
-
-// get event
+// get event - works
 router.get("/", (req, res) => {
   Calendar.event()
     .then(events => {
@@ -25,57 +13,53 @@ router.get("/", (req, res) => {
     });
 });
 
-// search for event
+// add event - ADMIN/HOST
+router.post("/", (req, res) => {
+  const {
+    summary,
+    location,
+    description,
+    start_time,
+    start_date,
+    end_time,
+    end_date
+  } = req.body;
+  const newEvent = {
+    summary,
+    location,
+    description,
+    start_time,
+    start_date,
+    end_time,
+    end_date
+  };
 
-router.get("/", (req, res) => {
-  const filter = req.params.filter;
-
-  Calendar.searchForEvent(filter)
-    .then(events => {
-      res.status(200).json(events);
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({ message: "Could not find such an event", error });
-    });
+  if (!summary || !location || !description) {
+    res.status(400).json({ message: "add required fields" });
+  } else {
+    Calendar.addEvent(newEvent)
+      .then(newEvent => {
+        res.status(200).json({ message: "Event created!", newEvent });
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({ message: "Could not create event", error });
+      });
+  }
 });
 
-// add event - ADMIN/HOST
+// register for event / post to attendees table
+router.post("/user/:user_id/event/:event_id", (req, res) => {
+  const user_id = req.params.user_id;
+  const event_id = req.params.event_id;
 
-router.post("/", (req, res) => {});
-
-// edit event - REGISTER
-router.put("/user/:id/event/:id", (req, res) => {
-  const user_id = req.params.user.id;
-  const event_id = req.params.event.id;
-  const email = req.params.user.email;
-
-  Calendar.register(event_id, user_id, email)
+  Calendar.register(event_id, user_id)
     .then(registered => {
-      res.status(200).json({ message: "Registered for event!" });
+      res.status(200).json({ message: "Registered for event!", registered });
     })
     .catch(error => {
       console.log(error);
       res.status(500).json({ message: "Could not register for event", error });
-    });
-});
-
-// edit event - ADMIN/HOST
-router.put("/:id", (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
-
-  Calendar.editEvent(body, id)
-    .then(updatedEvent => {
-      if (updatedEvent) {
-        res.status(200).json({ message: "Event updated" });
-      } else {
-        res.status(404).json({ message: "Could not find event" });
-      }
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({ message: "Unable to update event", error });
     });
 });
 
@@ -85,8 +69,8 @@ router.delete("/:id", (req, res) => {
 
   Calendar.deleteEvent(id)
     .then(deleted => {
-      if (deleted) {
-        res.status(200).json({ message: "Event has been deleted" });
+      if (id) {
+        res.status(200).json({ message: "Event has been deleted", deleted });
       } else {
         res.status(404).json({ message: "Event not found" });
       }
