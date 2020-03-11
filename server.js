@@ -18,9 +18,7 @@ server.use('/api/calendar', calendar)
 
 
 server.get("/", (req, res) => {
-    res.send(`<h2>PhoeNicks</h2>`);
-})
-
+  res.send(`<h2>PhoeNicks!</h2>`);
+});
 
 module.exports = server;
-
