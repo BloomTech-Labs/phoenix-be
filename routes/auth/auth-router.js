@@ -32,7 +32,9 @@ router.post('/register', cors(), (req, res) => {
         });
 });
 
-router.post('/login', (req, res) => {
+router.options('/login', cors())
+
+router.post('/login', cors(), (req, res) => {
     const { username, password } = req.body;
 
     User.getByUsername(username)
