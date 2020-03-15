@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../users/user-helpers.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors')
 
 function generateToken(user) {
     const payload = {
@@ -13,7 +14,10 @@ function generateToken(user) {
     };
     return jwt.sign(payload, process.env.JWT_SECRET, options);
 }
-router.post('/register', (req, res) => {
+
+router.options('/register', cors())
+
+router.post('/register', cors(), (req, res) => {
     let users = req.body;
     const hash = bcrypt.hashSync(users.password, 8)
      users.password = hash
