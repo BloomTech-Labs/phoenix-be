@@ -27,8 +27,7 @@ router.post('/register', cors(), (req, res) => {
             res.status(201).json({ Message: 'User Registeration Succesful', id });
         })
         .catch(err => {
-            console.log(err);
-            res.status(500).json({ Message: 'Error Registering User'});
+            res.status(500).json({ Message: 'Error Registering User', Error: err});
         });
 });
 
@@ -36,7 +35,6 @@ router.options('/login', cors())
 
 router.post('/login', cors(), (req, res) => {
     const { username, password } = req.body;
-    console.log('REQ BODY BEFORE GET FUNCTION: ', req.body)
     User.getByUsername(username)
         .then(user => {
 
@@ -44,14 +42,11 @@ router.post('/login', cors(), (req, res) => {
                 const token = generateToken(user);
                 res.status(200).json({ Message: "Login Succesful!", token });
             } else {
-                res.status(401).json({ Message: 'Error logging in' })
+                res.status(401).json({ Message: 'Error logging in', Error: err })
             }
         })
         .catch(err => {
-            console.log('ERROR MESSAGE', err);
-            console.log('REQ BODY IN CATCH', req.body);
-
-            res.status(400).json({ Message: 'Error logging in' })
+            res.status(500).json({ Message: 'Error logging in', Error: err })
         })
 })
 
