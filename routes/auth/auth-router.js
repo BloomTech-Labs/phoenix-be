@@ -36,7 +36,7 @@ router.options('/login', cors())
 
 router.post('/login', cors(), (req, res) => {
     const { username, password } = req.body;
-
+    console.log('REQ BODY BEFORE GET FUNCTION: ', req.body)
     User.getByUsername(username)
         .then(user => {
 
@@ -49,6 +49,8 @@ router.post('/login', cors(), (req, res) => {
         })
         .catch(err => {
             console.log('ERROR MESSAGE', err.response);
+            console.log('REQ BODY IN CATCH', req.body);
+
             res.status(400).json({ Message: 'Error logging in' })
         })
 })
