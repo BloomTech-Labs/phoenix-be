@@ -48,7 +48,7 @@ router.post('/login', cors(), (req, res) => {
             }
         })
         .catch(err => {
-            console.log('ERROR MESSAGE', err.response);
+            console.log('ERROR MESSAGE', err);
             console.log('REQ BODY IN CATCH', req.body);
 
             res.status(400).json({ Message: 'Error logging in' })
