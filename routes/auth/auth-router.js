@@ -48,8 +48,8 @@ router.post('/login', cors(), (req, res) => {
             }
         })
         .catch(err => {
-            console.log(err);
-            res.status(500).json({ Message: 'Error logging in' })
+            console.log('ERROR MESSAGE', err.response);
+            res.status(400).json({ Message: 'Error logging in' })
         })
 })
 
