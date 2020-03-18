@@ -25,23 +25,25 @@ describe("Test event calendar CRUD", function() {
         "content-type": "application/json"
       }
     }).then(function(response) {
-      expect(response.body).to.have.property("message");
+      expect(response.body).to.have.property("newEvent");
+    });
+  });
+
+  it("Deletes an event", function() {
+    cy.request({
+      method: "DELETE",
+      url: `/api/calendar/30`
+    }).then(function(response) {
+      expect(response.body).to.have.property("deleted");
+    });
+  });
+
+  it("Registers for an event", function() {
+    cy.request({
+      method: "POST",
+      url: "/api/calendar/user/1/event/21"
+    }).then(function(response) {
+      expect(response.body).to.have.property("registered");
     });
   });
 });
-
-// describe("Tests register for event", function() {
-//   it("Registers for event", function() {
-//     // let registerLength = register.length
-//     // register
-//     // expect(events)to.equal(registerLength+1)
-//   });
-// });
-
-// describe("Tests delete event", function() {
-//   it("Removes an event", function() {
-//     // let eventsLength = events.length
-//     // delete event
-//     // expect(events)to.equal(eventsLength-1)
-//   });
-// })}
