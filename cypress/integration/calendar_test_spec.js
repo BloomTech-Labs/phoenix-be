@@ -8,6 +8,7 @@ describe("Test event calendar CRUD", function() {
     });
   });
 
+  var id;
   it("Adds an event", function() {
     cy.request({
       method: "POST",
@@ -26,13 +27,14 @@ describe("Test event calendar CRUD", function() {
       }
     }).then(function(response) {
       expect(response.body).to.have.property("newEvent");
+      id = response.body.newEvent[response.body.newEvent.length - 1].event_id;
     });
   });
 
   it("Deletes an event", function() {
     cy.request({
       method: "DELETE",
-      url: `/api/calendar/30`
+      url: `/api/calendar/${id}`
     }).then(function(response) {
       expect(response.body).to.have.property("deleted");
     });
