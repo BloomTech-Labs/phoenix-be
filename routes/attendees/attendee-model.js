@@ -6,12 +6,12 @@ module.exports = {
     attendeeFull
 }
 
-function attendeeByEvent(event_id) {
+function attendeeByEvent() {
     return db
     //mzybee phoenx
     .select("e.summary")
     .from("phoenixEvent as e")
-    .fullOuterJoin("attendees", {event_id}, attendees.event_id)
+    .fullOuterJoin("attendees", 'event_id', 'attendees.event_id')
 }
 
 
@@ -22,14 +22,14 @@ function attendeeByUser(user_id) {
     //maybe user
     .select(u.username)
     .from("users as u")
-    .fullOuterJoin("attendees", {user_id}, attendees.user_id)
+    .fullOuterJoin("attendees", {user_id}, 'attendees.user_id')
 }
 
 //select username from userd join attendees where user_id = id
 
-async function attendeeFull(event_id, user_id) {
+async function attendeeFull(user_id) {
     try {
-        await attendeeByEvent({ event_id})
+        await attendeeByEvent()
         await attendeeByUser({user_id})
         return db('attendees')
     }catch(err) {console.log('something went wrong with the user request || the event is not valid', err)}
