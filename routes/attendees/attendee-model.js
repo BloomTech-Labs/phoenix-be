@@ -1,38 +1,29 @@
 const db = require("../../database/config.js")
 
 module.exports = {
-    attendeeByEvent,
-    attendeeByUser,
-    attendeeFull
+    attendeeWithEvent,
+    attendee,
+    // attendeeFull
 }
 
-function attendeeByEvent() {
+function attendee() {
     return db
-    //mzybee phoenx
+    .select("*")
+    .from("attendees")
+}
+
+function attendeeWithEvent() {
+    return db
     .select("e.summary")
     .from("phoenixEvent as e")
-    .fullOuterJoin("attendees", 'event_id', 'attendees.event_id')
+    .innerJoin("attendees", 'e.event_id', 'attendees.event_id')
 }
 
+// function attendeeFull() {
+//     return db
+//     .select('*')
+//     .from('phoenixEvent')
+//     .crossJoin('attendees')
 
-//select  sumary from  phxevent join attendees where event_id = id 
+// }
 
-function attendeeByUser(user_id) {
-    return db
-    //maybe user
-    .select(u.username)
-    .from("users as u")
-    .fullOuterJoin("attendees", {user_id}, 'attendees.user_id')
-}
-
-//select username from userd join attendees where user_id = id
-
-async function attendeeFull(user_id) {
-    try {
-        await attendeeByEvent()
-        await attendeeByUser({user_id})
-        return db('attendees')
-    }catch(err) {console.log('something went wrong with the user request || the event is not valid', err)}
-}
-
-//return attendee by id functions

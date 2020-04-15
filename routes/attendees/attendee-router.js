@@ -2,8 +2,19 @@ const router = require('express').Router()
 
 const Attend = require("./attendee-model.js")
 
-router.get("/", (req, res) => {
-    Attend.attendeeByEvent()
+router.get('/', (req, res) => {
+    Attend.attendee()
+        .then(obj =>{
+            res.status(200).json(obj)
+        })
+        .catch(error => {
+            console.log('error', error);
+            res.status(500).json({message: "Unable to get joined table", err})
+        })
+})
+
+router.get("/spec", (req, res) => {
+    Attend.attendeeWithEvent()
         .then(aeS => {
             res.status(200).json(aeS)
         })
@@ -13,29 +24,14 @@ router.get("/", (req, res) => {
         })
 })
 
-router.get("/user/:id", (req, res) => {
-    const id = req.params.id
-
-    Attend.attendeeByUser(id)
-
-    .then(userA => {
-        res.status(200).json(userA)
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).json({ message: "Unable to fetch users", error });
-    })
-})
-
-router.get("/user/:id", async, (req, res, next) => {
-    const id = req.params.id
-    Attend.attendeeFull(id)
-
-    try {
-        
-    } catch(error) {
-        console.log(error);
-        res.status(500).json({ message: "Unable to fetch events", error });
-    }
-
-})
+// router.get("/spec2", (req, res) => {
+//     Attend.attendeeFull()
+//         .then(aeS => {
+//             res.status(200).json(aeS)
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             res.status(500).json({ message: "Unable to fetch events", error });
+//         })
+// })
+module.exports = router;
