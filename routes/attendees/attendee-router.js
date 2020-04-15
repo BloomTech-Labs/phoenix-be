@@ -24,14 +24,14 @@ router.get("/spec", (req, res) => {
         })
 })
 
-// router.get("/spec2", (req, res) => {
-//     Attend.attendeeFull()
-//         .then(aeS => {
-//             res.status(200).json(aeS)
-//         })
-//         .catch(error => {
-//             console.log(error);
-//             res.status(500).json({ message: "Unable to fetch events", error });
-//         })
-// })
+router.get("/spec2", (req, res) => {
+    Attend.attendeeFull()
+        .then(aeS => {
+            res.status(200).json(aeS)
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ message: "Unable to fetch events", error });
+        })
+})
 module.exports = router;

@@ -3,7 +3,7 @@ const db = require("../../database/config.js")
 module.exports = {
     attendeeWithEvent,
     attendee,
-    // attendeeFull
+    attendeeFull
 }
 
 function attendee() {
@@ -19,11 +19,11 @@ function attendeeWithEvent() {
     .innerJoin("attendees", 'e.event_id', 'attendees.event_id')
 }
 
-// function attendeeFull() {
-//     return db
-//     .select('*')
-//     .from('phoenixEvent')
-//     .crossJoin('attendees')
+function attendeeFull() {
+    return db
+    .select('*')
+    .from('phoenixEvent')
+    .crossJoin('attendees')
 
-// }
+}
 
