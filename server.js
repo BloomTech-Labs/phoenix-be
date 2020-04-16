@@ -17,8 +17,7 @@ server.use('/api/users', authenticate, usersRouter)
 server.use('/auth', authRouter)
 server.use('/api/calendar', calendar)
 server.use('/api/attendees', attendee)
-console.log('attendee', attendee)
-console.log('calendar', calendar)
+
 
 server.get("/", (req, res) => {
   res.send(`<h2>PhoeNicks!</h2>`);
