@@ -1,3 +1,4 @@
+require('dotenv').config()
 var pg = require('pg');
 
 var conString = process.env.DATABASE_URL

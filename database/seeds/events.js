@@ -6,7 +6,7 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex("phoenixEvent").insert([
         {
-          id: 1,
+        event_id: 1,
           summary: "Wine And Beer Aficionados",
           location: "Denver, Colorado",
           description: "Wine and Beer Tasting with a Live Band",
@@ -17,7 +17,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 2,
+          event_id: 2,
           summary: "Marathon And New Runner Enthusiasts",
           location: "Los Angeles, California",
           description:
@@ -29,7 +29,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 3,
+          event_id: 3,
           summary: "Movie Premier Night",
           location: "Hollywood, California",
           description:
@@ -41,7 +41,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 4,
+          event_id: 4,
           summary: "Bird Watching Buddies",
           location: "Boiler Bay, Oregon ",
           description:
@@ -53,7 +53,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 5,
+          event_id: 5,
           summary: "Park Exploration Night",
           location: "Austin, Texas",
           description:
@@ -65,7 +65,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 6,
+          event_id: 6,
           summary: "Museum Exploration Afternoon",
           location: "Boston, Massachusetts",
           description: "Meet new friends & explore museums virtually",
@@ -76,7 +76,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 7,
+          event_id: 7,
           summary: "Yoga And Meditation Morning",
           location: "San Francisco, California",
           description:
@@ -88,7 +88,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 8,
+          event_id: 8,
           summary: "Hiking and Naturist Enthusiasts",
           location: "Seattle, Washiington",
           description: "Meet new hiking friends, best hiking locations and times presentation",
@@ -98,7 +98,7 @@ exports.seed = function (knex) {
           end_date: "May 17 2020",
         },
         {
-          id: 9,
+          event_id: 9,
           summary: "Art Museum Exhibit",
           location: "Los Angeles, California",
           description: "Meet new artist enthusiasts, appetizers and drinks provided",
@@ -108,7 +108,7 @@ exports.seed = function (knex) {
           end_date: "May 20 2020",
         },
         {
-          id: 10,
+          event_id: 10,
           summary: "Philanthropy Enthusiasts",
           location: "Sacramento, California",
           description: "Meet other charity minded friends and speak with local charities",
@@ -118,7 +118,7 @@ exports.seed = function (knex) {
           end_date: "May 23 2020",
         },
         {
-          id: 11,
+          event_id: 11,
           summary: "Kayaking and Paddle Boarding",
           location: "Newport Beach, California",
           description: "Join new and old friends and travel from Back Bay to the Pacific Ocean for a picnic lunch",
@@ -128,7 +128,7 @@ exports.seed = function (knex) {
           end_date: "May 24 2020",
         },
         {
-          id: 12,
+          event_id: 12,
           summary: "Bookstores Adventure",
           location: "Midtown New York, New York",
           description: "Meet New friends on an adventure of touring the Six floors of Argosy Book Store, beverages and appetizers",
@@ -138,7 +138,7 @@ exports.seed = function (knex) {
           end_date: "May 27 2020",
         },
         {
-          id: 13,
+          event_id: 13,
           summary: "Guest Chef",
           location: "New York City, New York",
           description: "Pick a partner to be our guest chefs and learn the art and fun of cooking as a team",
@@ -148,7 +148,7 @@ exports.seed = function (knex) {
           end_date: "May 30 2020",
         },
         {
-          id: 14,
+          event_id: 14,
           summary: "The Art of Investment",
           location: "New York, New York",
           description: "Meet new friends and collaborate to make that dream getaway, vaction home, car come true ",
@@ -158,7 +158,7 @@ exports.seed = function (knex) {
           end_date: "May 31 2020",
         },
         {
-          id: 15,
+          event_id: 15,
           summary: "Backyard BBQ/Smoking and Entertaining",
           location: "Salt Lake City, Utah",
           description: "Meet new friends, see new BBQ's, Taste New Flavors, Inspired Backyard Party Themes",
@@ -168,7 +168,7 @@ exports.seed = function (knex) {
           end_date: "June 3 2020",
         },
         {
-          id: 16,
+          event_id: 16,
           summary: "Experts on Grapes and Barley",
           location: "Palm Springs, California",
           description: "Wine and Beer Tasting with a Live Band",
@@ -179,7 +179,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 17,
+          event_id: 17,
           summary: "Boston Marathon And New Runner Enthusiasts",
           location: "Boston, Massachusetts",
           description:
@@ -191,7 +191,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 18,
+          event_id: 18,
           summary: "Broadway Premier Night",
           location: "New York, New York",
           description:
@@ -203,7 +203,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 19,
+          event_id: 19,
           summary: "Birds of Arizona",
           location: "Cave Creek Canyon, Arizona ",
           description:
@@ -215,7 +215,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 20,
+          event_id: 20,
           summary: "Park Exploration Night",
           location: "Orlando, Florida",
           description:
@@ -227,7 +227,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 21,
+          event_id: 21,
           summary: "Museum Exploration Afternoon",
           location: "Washington D. C. ",
           description: "Meet new friends & pick a museum to visit, end the night with a cocktail party",
@@ -238,7 +238,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 22,
+          event_id: 22,
           summary: "Seattle HotSpot Yoga And Meditation Morning",
           location: "Golden Gardens, Washington",
           description:
@@ -250,7 +250,7 @@ exports.seed = function (knex) {
         },
 
         {
-          id: 23,
+          event_id: 23,
           summary: "Muir Woods Hiking and Naturist ",
           location: "San Francisco, California",
           description: "Meet new hiking friends, hike in awe of ancient Redwood trees",
@@ -260,7 +260,7 @@ exports.seed = function (knex) {
           end_date: "June 21 2020",
         },
         {
-          id: 24,
+          event_id: 24,
           summary: "MET Art Museum Exhibit",
           location: "New York City, New York",
           description: "Meet new art and history enthusiasts, appetizers and drinks provided",
@@ -270,7 +270,7 @@ exports.seed = function (knex) {
           end_date: "June 24 2020",
         },
         {
-          id: 25,
+          event_id: 25,
           summary: "Philanthropy Enthusiasts",
           location: "Houston, Texas",
           description: "Meet other passionate charity minded friends and speak with local charities, team up for a cause",
@@ -280,7 +280,7 @@ exports.seed = function (knex) {
           end_date: "June 27 2020",
         },
         {
-          id: 26,
+          event_id: 26,
           summary: "Kayaking and Paddle Boarding",
           location: "St. Augustine, Florida",
           description: "Join new and old friends and travel the nations oldest coastal city, ending on the Atlantic Ocean for a picnic lunch",
@@ -290,7 +290,7 @@ exports.seed = function (knex) {
           end_date: "June 28 2020",
         },
         {
-          id: 27,
+          event_id: 27,
           summary: "Bookstores Adventure",
           location: "Los Angeles, California",
           description: "Meet New friends on an adventure of touring The Last  Book Store, beverages and appetizers",
@@ -300,7 +300,7 @@ exports.seed = function (knex) {
           end_date: "July 1 2020",
         },
         {
-          id: 28,
+          event_id: 28,
           summary: "Guest Chef",
           location: "Austin, Texas",
           description: "Pick a partner to be our guest chefs and learn the art and fun of cooking as a team, cook your own lunch",
@@ -310,7 +310,7 @@ exports.seed = function (knex) {
           end_date: "July 5 2020",
         },
         {
-          id: 29,
+          event_id: 29,
           summary: "The Art of Investment",
           location: "Silicon Valley, California",
           description: "Meet new friends and collaborate to make that dream getaway, vaction home, car come true ",
@@ -320,14 +320,14 @@ exports.seed = function (knex) {
           end_date: "July 8 2020",
         },
         {
-          id: 30,
+          event_id: 30,
           summary: "Backyard BBQ/Smoking and Entertaining",
           location: "Houston, Texas",
           description: "Meet new friends, see new BBQ's, Taste New Flavors, Inspired Backyard Party Themes",
           start_time: "6:00pm",
           start_date: "July 11 2020",
           end_time: "10:00pm",
-          end_date: "Juy 11 2020",
+          end_date: "July 11 2020",
         },
       ]);
     });
