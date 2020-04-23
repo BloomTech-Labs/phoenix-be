@@ -16,9 +16,9 @@ module.exports = {
       }
     },
     testing: {
-      client: 'cypress',
+      client: 'pg',
       connection: {
-        filename: './cypress/server_test.spec.js',
+        filename: process.env.DATABASE_URL,
       },
       useNullAsDefault: true,
       migrations: {

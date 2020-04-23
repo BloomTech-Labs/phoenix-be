@@ -4,7 +4,8 @@
   "description": "🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "coverage": "cross-env NODE_ENV=testing jest --coverage --watchAll=false --detectOpenHandles --forceExit || true",
+    "test": "cross-env NODE_ENV=testing jest --watch --runInBand --detectOpenHandles",
     "start": "node index.js",
     "server": "nodemon index.js"
   },
@@ -27,8 +28,26 @@
     "knex": "^0.20.10",
     "pg": "^7.18.2"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "**/*.{js}",
+      "!**node_modules/**",
+      "!**/vendor/**",
+      "!**/test/**",
+      "!**/coverage/**",
+      "!**/database/migrations/**",
+      "!**/database/seeds/**",
+      "!**/models/all-user-data.js",
+      "!**/config/**",
+      "!**/index.js"
+    ]
+  },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "cypress": "^4.0.2",
-    "nodemon": "^2.0.2"
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   }
 }
