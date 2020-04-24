@@ -1,145 +1,157 @@
   
-# Code Climate: Grade Badge
-
+# Maintainability and Test Coverage
+### Code Climate Badges
 [![Maintainability](https://api.codeclimate.com/v1/badges/6107c810fc83d93a2733/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6107c810fc83d93a2733/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/test_coverage)
-
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
-
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be completed by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # API Documentation
 
-**Backend delpoyed at** [Heroku Git](https://phoenix-be-production.herokuapp.com/)
+**Backend delpoyed at** [Phoenix Heroku App](https://phoenix-be-production.herokuapp.com/)
 
-## Getting started
+# Getting started
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
-
 1. Clone this repo
-2. **Yarn Install** to install all required dependencies
-3. **Yarn Server** to start the local server
-4. **Yarn Test** to start server using testing environment
+2. ```npm i``` to install all required dependencies
+3. ```npm start``` to start local server
+4. ```npm server``` to start local server with nodemon 
+5. ```npm test``` to start test environment -OR- ```npm run coverage``` to get tests with a coverage report
 
-## Backend framework 
+## Backend framework
 
 - Node.js
 - Postgres
-- Socket.IO
-- Google Calendar
+- Heroku
+- ElephantSQL
 
 # Framework Advantages
 
 - An open-source, cross-platform
 - Easy to integrate SQL database
-- Chat functionality with simple setup
-- Meetup functionality
 
-## 2️⃣ Endpoints
+## Endpoints
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
-
-#### Organization Routes
+#### Auth Routes
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| POST    | `auth/register` | all users      | Creates a new user.                                     |
+| POST    | `auth/login`    | all users      | Returns a JSON Web Token.                               |
 
 #### User Routes
 
 | Method | Endpoint                | Access Control      | Description                                        |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+| GET    | `api/users`             | all users           | Returns all users.                                 |
+| GET    | `api/users/key`         | admin               | Returns users by key.                              |
+| GET    | `api/users/:user_id`   | admin               | Returns user by user id.                           |
+| PUT    | `api/users/:user_id`   | admin               | Updates user account info by user id               |
+| DELETE | `api/users/:user_id`   | admin               | Deletes a user by user id.                         |
+
+#### Calendar Routes
+
+| Method | Endpoint                                    | Access Control  | Description                         |
+| ------ | ------------------------------------------- | --------------- | ------------------------------------|
+| GET    | `api/calendar`                              | admin           | Returns all Phoenix events.         |
+| POST   | `api/calendar`                              | admin           | Add new Phoenix event.              |
+| POST   | `api/calendar/user/:user_id/event/:event_id`| Registered user | Returns user by user id.            |
+| DELETE | `api/calendar/:event_id`                    | admin           | Deletes a user by user id.          |
+
+#### Attendees Routes
+
+| Method | Endpoint                                | Access Control  | Description                                   |
+| ------ | --------------------------------------- | --------------- | ----------------------------------------------|
+| GET    | `api/attendees`                         | admin           | Returns all event ids with registered user ids|
+| POST   | `api/attendees`                         | admin           | Add new Phoenix event.                        |
+| POST   | `api/attendees/spec2`                   | admin           | Returns user by user id.                      |
 
 # Data Model
-
-🚫This is just an example. Replace this with your data model
-
-#### 2️⃣ ORGANIZATIONS
-
----
-
-```
-{
-  id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
-}
-```
 
 #### USERS
 
 ---
 
-```
+```JavaScript
 {
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
+  id: INTEGER
+  username: STRING
+  password: STRING
+  name: BOOLEAN
   email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+  age: INTEGER
 }
 ```
 
-## 2️⃣ Actions
+#### EVENTS
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+---
 
-`getOrgs()` -> Returns all organizations
+```JavaScript
+{
+  event_id: INTEGER
+  summary: STRING - NOT NULLABLE
+  location: STRING - NOT NULLABLE
+  description: STRING
+  start_time: TIME
+  start_date: DATE
+  end_time: TIME
+  end_date: DATE
+}
+```
 
-`getOrg(orgId)` -> Returns a single organization by ID
+#### ATTENDEES
 
-`addOrg(org)` -> Returns the created org
+---
 
-`updateOrg(orgId)` -> Update an organization by ID
+```JavaScript
+{
+  event_id: foreign key in PHOENIXEVENT table
+  user_id: foreign key in USERS table
+  attendees_id: COMPOSITE KEY FROM EVENT_ID AND USER_ID
+}
+```
 
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
-<br>
-`getUsers(orgId)` -> if no param all users
+## Actions
 
-`getUser(userId)` -> Returns a single user by user ID
+`getUsers()` -> Returns all users.
 
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+`getUserById(id)` -> Returns a single user by user id.
 
-`updateUser(userId, changes object)` -> Updates a single user by ID.
+`getUserBy(key)` -> Returns all users that match a key word.
 
-`deleteUser(userId)` -> deletes everything dependent on the user
+`addUser()` -> Creates a new user and returns that user with a JSON web token and a success message.
 
-## 3️⃣ Environment Variables
+`updateUser(id, body)` -> Updates user info and returns updated user object
+
+`deleteUser(id)` -> Deletes a user by id and returns all current users.
+
+`getByUsername(username)` -> Returns a user by username.
+
+`event()` -> Returns all events.
+
+`register()` -> Registes a user for an event.
+
+`addEvent()` -> Creates a new event.
+
+`deleteEvent()` -> Deletes an event.
+
+`attendee()` -> Return all users ids registered to an event with event ids.
+
+`attendeeWithEvent` -> Returns event summaries from events with attendees.
+
+`attendeeFull()` -> Returns all events with registered user ids.
+
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a .env file that includes the following:
 
-🚫 These are just examples, replace them with the specifics for your app
-    
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
-    *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
-    
+- DATABASE_URL - ElephantSQL postgres database url
+
+- NODE_ENV - set to "development" until ready for "production"
+- JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -178,5 +190,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/phoenix-fe/blob/master/README.md) for details on the fronend of our project.

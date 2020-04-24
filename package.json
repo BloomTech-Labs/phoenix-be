@@ -47,7 +47,6 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "cypress": "^4.0.2",
     "jest": "^25.4.0",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
