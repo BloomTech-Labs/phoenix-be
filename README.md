@@ -1,13 +1,16 @@
-  
-# Maintainability and Test Coverage
+# Phoenix
+
+## Maintainability and Test Coverage
+
 ### Code Climate Badges
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/6107c810fc83d93a2733/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6107c810fc83d93a2733/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/phoenix-be/test_coverage)
 
-# API Documentation
+## API Documentation
 
 **Backend delpoyed at** [Phoenix Heroku App](https://phoenix-be-production.herokuapp.com/)
 
-# Getting started
+## Getting started
 
 To get the server running locally:
 
@@ -24,21 +27,21 @@ To get the server running locally:
 - Heroku
 - ElephantSQL
 
-# Framework Advantages
+## Framework Advantages
 
 - An open-source, cross-platform
 - Easy to integrate SQL database
 
 ## Endpoints
 
-#### Auth Routes
+### Auth Routes
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
 | POST    | `auth/register` | all users      | Creates a new user.                                     |
 | POST    | `auth/login`    | all users      | Returns a JSON Web Token.                               |
 
-#### User Routes
+### User Routes
 
 | Method | Endpoint                | Access Control      | Description                                        |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
@@ -48,7 +51,7 @@ To get the server running locally:
 | PUT    | `api/users/:user_id`   | admin               | Updates user account info by user id               |
 | DELETE | `api/users/:user_id`   | admin               | Deletes a user by user id.                         |
 
-#### Calendar Routes
+### Calendar Routes
 
 | Method | Endpoint                                    | Access Control  | Description                         |
 | ------ | ------------------------------------------- | --------------- | ------------------------------------|
@@ -57,7 +60,7 @@ To get the server running locally:
 | POST   | `api/calendar/user/:user_id/event/:event_id`| Registered user | Returns user by user id.            |
 | DELETE | `api/calendar/:event_id`                    | admin           | Deletes a user by user id.          |
 
-#### Attendees Routes
+### Attendees Routes
 
 | Method | Endpoint                                | Access Control  | Description                                   |
 | ------ | --------------------------------------- | --------------- | ----------------------------------------------|
@@ -65,9 +68,9 @@ To get the server running locally:
 | POST   | `api/attendees`                         | admin           | Add new Phoenix event.                        |
 | POST   | `api/attendees/spec2`                   | admin           | Returns user by user id.                      |
 
-# Data Model
+## Data Model
 
-#### USERS
+### USERS
 
 ---
 
@@ -82,7 +85,7 @@ To get the server running locally:
 }
 ```
 
-#### EVENTS
+### EVENTS
 
 ---
 
@@ -99,7 +102,7 @@ To get the server running locally:
 }
 ```
 
-#### ATTENDEES
+### ATTENDEES
 
 ---
 
