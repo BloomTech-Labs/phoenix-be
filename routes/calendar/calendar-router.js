@@ -70,7 +70,7 @@ router.get('/user/:user_id', (req, res) => {
 
   Calendar.getAttn(user_id)
     .then((events) => {
-      res.status(200).json({ message: 'Events here', events });
+      res.status(200).json({ events });
     })
     .catch((error) => {
       console.log(error);

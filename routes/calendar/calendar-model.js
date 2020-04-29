@@ -22,9 +22,10 @@ function register(event_id, user_id) {
 
 //return attendees table by user id
 function getAttn(user_id) {
-  return db('attendees').then(() =>
-    db('attendees').where({ user_id: user_id })
-  );
+  return db('attendees as a')
+    .join('phoenixEvent as p', 'p.event_id', '=', 'a.event_id')
+    .select('*')
+    .where({ 'a.user_id': user_id });
 }
 
 //add event -ADMIN/HOST
