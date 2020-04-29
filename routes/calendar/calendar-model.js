@@ -24,7 +24,7 @@ function register(event_id, user_id) {
 function getAttn(user_id) {
   return db('attendees as a')
     .join('phoenixEvent as p', 'p.event_id', '=', 'a.event_id')
-    .select('p.summary')
+    .select('*')
     .where({ 'a.user_id': user_id });
 }
 
