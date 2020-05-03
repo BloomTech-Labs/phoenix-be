@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
             res.status(200).json(obj)
         })
         .catch(error => {
-            console.log('error', error);
+
             res.status(500).json({message: "Unable to get joined table", err})
         })
 })
@@ -19,7 +19,7 @@ router.get("/spec", (req, res) => {
             res.status(200).json(aeS)
         })
         .catch(error => {
-            console.log(error);
+
             res.status(500).json({ message: "Unable to fetch events", error });
         })
 })
@@ -30,7 +30,7 @@ router.get("/spec2", (req, res) => {
             res.status(200).json(aeS)
         })
         .catch(error => {
-            console.log(error);
+
             res.status(500).json({ message: "Unable to fetch events", error });
         })
 })

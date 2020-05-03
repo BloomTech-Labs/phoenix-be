@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
       res.status(200).json(events);
     })
     .catch((error) => {
-      console.log(error);
+
       res.status(500).json({ message: 'Unable to fetch events', error });
     });
 });
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
         res.status(200).json({ message: 'Event created!', newEvent });
       })
       .catch((error) => {
-        console.log(error);
+
         res.status(500).json({ message: 'Could not create event', error });
       });
   }
@@ -58,7 +58,7 @@ router.post('/user/:user_id/event/:event_id', (req, res) => {
       res.status(200).json({ message: 'Registered for event!', registered });
     })
     .catch((error) => {
-      console.log(error);
+
       res.status(500).json({ message: 'Could not register for event', error });
     });
 });
@@ -73,7 +73,7 @@ router.get('/user/:user_id', (req, res) => {
       res.status(200).json({ events });
     })
     .catch((error) => {
-      console.log(error);
+
       res.status(500).json({ message: 'Could not get events', error });
     });
 });
@@ -91,7 +91,7 @@ router.delete('/:id', (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+
       res.status(500).json({ message: 'Failed to delete event', error });
     });
 });

@@ -5,7 +5,7 @@ function getUsers() {
 }
 
 function getUserBy({ key }) {
-  console.log('inside helper', key);
+
   return db('users').where(key);
 }
 

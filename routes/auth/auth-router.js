@@ -30,7 +30,7 @@ router.post('/register', cors(), (req, res) => {
         .json({ Message: 'User Registration Successful', id, token });
     })
     .catch(err => {
-      console.log(err);
+
       res.status(500).json({ Message: 'Error Registering User', Error: err });
     });
 });
@@ -39,7 +39,7 @@ router.options('/login', cors());
 
 router.post('/login', cors(), (req, res) => {
   const { username, password } = req.body;
-  console.log(User);
+
   User.getByUsername(username)
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
