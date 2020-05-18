@@ -9,7 +9,8 @@
 ## API Documentation
 
 **Backend delpoyed at** [Phoenix Heroku App](https://phoenix-be-production.herokuapp.com/)
-**Api Documentation:** [Postman Docs] (https://documenter.getpostman.com/view/7041266/SzmmVv2b?version=latest)
+
+**Api Documentation:** [Postman Docs](https://documenter.getpostman.com/view/7041266/SzmmVv2b?version=latest)
 
 ## Getting started
 
